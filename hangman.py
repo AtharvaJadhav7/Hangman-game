@@ -13,9 +13,9 @@ def valid_word(words):
 
 
 def hangman():
-    word = valid_word(words)
+    word = valid_word(words).upper()
     word_letters = set(word) # letters in word
-    letter = set(string.ascii_uppercase)
+    alphabet = set(string.ascii_uppercase)
     used_letters = set() # letters used by user
 
 
@@ -24,12 +24,12 @@ def hangman():
 
     while len(word_letters)>0 and lives>0:
         print('You have',lives,'lives left and','you have used these letters: ',' '.join(used_letters))
-        word_list=[a if a in used_letters else '_' for a in word]
+        word_list=[letter if letter in used_letters else '_' for letter in word]
         print('Current word: ', ' '.join(word_list))
         
         
         user_letter = input('Guess a letter: ').upper()
-        if user_letter in letter - used_letters:
+        if user_letter in alphabet - used_letters:
             used_letters.add(user_letter)
             if user_letter in word_letters:
                 word_letters.remove(user_letter)
